@@ -1,6 +1,7 @@
 package com.taisbri.usuario.infraestructure.repository;
 
 import com.taisbri.usuario.infraestructure.entity.Usuario;
+import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -15,4 +16,7 @@ public interface UsuarioRepository extends JpaRepository<Usuario,Long> {
     //Ao inves de retornar um null não quebre, ele tarta de uma forma melhro o retorno quando isso acontece
 
     Optional<Usuario> findByEmail(String email);
+
+    @Transactional
+    void deleteByEmail(String email);
 }
