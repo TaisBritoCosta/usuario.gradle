@@ -13,5 +13,6 @@ public interface UsuarioRepository extends JpaRepository<Usuario,Long> {
 
     //optional é uma classe do java util para evitar o retorno de informações nullas
     //Ao inves de retornar um null não quebre, ele tarta de uma forma melhro o retorno quando isso acontece
-    Optional<Usuario> findByIdEmail(String email);
+
+    Optional<Usuario> findByEmail(String email);
 }
