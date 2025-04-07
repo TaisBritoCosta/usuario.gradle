@@ -27,13 +27,12 @@ public class Usuario implements UserDetails {
     @Column(name = "email", length = 100)
     private String email;
 
-    @Column(name = "senha", length = 255)
+    @Column(name = "senha")
     private String senha;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    //nome da coluna de endereco que se refere ao usuario
-    @JoinColumn(name = "usuario_id", referencedColumnName = "id")
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Endereco> enderecos;
+
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "usuario_id", referencedColumnName = "id")

@@ -1,7 +1,10 @@
 package com.taisbri.usuario.controller;
 
 import com.taisbri.usuario.business.UsuarioService;
+import com.taisbri.usuario.business.dto.EnderecoDTO;
+import com.taisbri.usuario.business.dto.TelefoneDTO;
 import com.taisbri.usuario.business.dto.UsuarioDTO;
+import com.taisbri.usuario.infraestructure.entity.Telefone;
 import com.taisbri.usuario.infraestructure.entity.Usuario;
 import com.taisbri.usuario.infraestructure.security.JwtUtil;
 import lombok.RequiredArgsConstructor;
@@ -38,7 +41,7 @@ public class UsuarioController {
     }
 
     @GetMapping
-    public ResponseEntity<Usuario> buscarUsuarioPorEmail(@RequestParam("email") String email) {
+    public ResponseEntity<UsuarioDTO> buscarUsuarioPorEmail(@RequestParam("email") String email) {
         return ResponseEntity.ok(usuarioService.buscarUsuarioPorEmail(email));
 
     }
@@ -52,6 +55,20 @@ public class UsuarioController {
                                                            @RequestHeader("Authorization") String token){
         return ResponseEntity.ok(usuarioService.atualizaDadosUsuario(token, dto));
     }
+
+    @PutMapping("/endereco")
+    public ResponseEntity<EnderecoDTO> atualizaEndereco(@RequestBody EnderecoDTO dto,
+                                                        @RequestParam("id") Long id){
+        return ResponseEntity.ok(usuarioService.atualizaEndereco(id, dto));
+
+    }
+
+    @PutMapping("/telefone")
+    public ResponseEntity<TelefoneDTO> atualizaTelefone(@RequestBody TelefoneDTO dto,
+                                                        @RequestParam("id") Long id) {
+        return ResponseEntity.ok(usuarioService.atualizaTelefone(id, dto));
+    }
+
 }
 
 
